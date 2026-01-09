@@ -17,8 +17,8 @@ int main() {
         exit(1);
     } else if(pid == 0) {
         printf("Child process:\n");
-        printf("Child PID: %dn", getpid());
-        printf("Parent PID: %dn", getppid());
+        printf("Child PID: %d\n", getpid());
+        printf("Parent PID: %d\n", getppid());
         printf("Child will terminate now\n\n");
         exit(0);
     } else {
