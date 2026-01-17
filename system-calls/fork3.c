@@ -6,6 +6,7 @@ int main() {
     pid_t p;
     printf("Before fork\n");
     p = fork();
+    printf("P values is %d\n", p);
     if (p < 0) {
         perror("fork failed");
         return 0;
@@ -17,5 +18,6 @@ int main() {
         printf("My child's id is %d\n", p);
         printf("I am parent having id %d\n", getpid());
     }
-    printf("Common");
+    printf("Common\n");
+    return 0;
 }
