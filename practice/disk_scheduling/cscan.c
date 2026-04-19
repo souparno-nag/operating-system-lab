@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
+
+void sort(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {int t = arr[j]; arr[j] = arr[j+1]; arr[j+1] = t;}
+        }
+    }
+}
+
+void CSCAN(int req[], int n, int head, int disk_size) {
+    int total = 0, curr = head, arr[MAX];
+    for (int i = 0; i < n; i++) arr[i] = req[i];
+    arr[n] = head;
+    arr[n+1] = 0;
+    arr[n+2] = disk_size-1;
+    sort(arr, n+3);
+    
+    int pos;
+    for (pos = 0; pos < n+3; pos++) if(arr[pos] == head) break;
+
+    printf("%d", head);
+    for (int i = pos+1; i < n+3; i++) {
+        total += abs(curr - arr[i]);
+        curr = arr[i];
+        printf(" -> %d", curr);
+    }
+    total += abs(disk_size - 1);
+    curr = 0;
+    printf(" -> %d", curr);
+    for (int i = 1; i < pos; i++) {
+        total += abs(curr - arr[i]);
+        curr = arr[i];
+        printf(" -> %d", curr);
+    }
+    printf("\nTotal head movement: %d\n", total);
+}
+
+int main() {
+    int n, head, req[MAX], disk_size;
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) scanf("%d", &req[i]);
+    scanf("%d", &head);
+    scanf("%d", &disk_size);
+    CSCAN(req, n, head, disk_size);
+    return 0;
+}
